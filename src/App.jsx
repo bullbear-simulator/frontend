@@ -1,4 +1,7 @@
 import "./App.css";
+import "typeface-poppins";
+import "typeface-lato";
+import "typeface-roboto-mono";
 
 function App() {
   return (
