@@ -11,9 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />{" "}
-          {/* component prop을 element prop으로 변경 */}
           <Route path="/auth/kakao" element={<Callback />} />{" "}
-          {/* component prop을 element prop으로 변경 */}
         </Routes>
       </Router>
     </>

@@ -27,17 +27,12 @@ function Callback() {
     const code = params.get("code");
 
     if (code) {
-      fetch("https://kauth.kakao.com/oauth/token", {
+      fetch("http://localhost:8080/auth/kakao", {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
-        body: new URLSearchParams({
-          grant_type: "authorization_code",
-          client_id: "08f6fb6d41c553e165e98c0201582fdd",
-          redirect_uri: "http://localhost:8080/auth/kakao",
-          code: code,
-        }),
+        body: JSON.stringify({ code }),
       })
         .then(response => {
           if (!response.ok) {
@@ -46,8 +41,9 @@ function Callback() {
           return response.json();
         })
         .then(data => {
-          console.log("Access Token:", data.access_token);
-          fetchUserInfo(data.access_token);
+          console.log("Access Token:", data.accessToken);
+          localStorage.setItem("accessToken", data.accessToken);
+          fetchUserInfo(data.accessToken);
         })
         .catch(error => console.error("Error:", error));
     }
