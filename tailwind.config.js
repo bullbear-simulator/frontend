@@ -39,6 +39,11 @@ export default {
           default: "#007BFF",
           dark: "#1E90FF",
         },
+        // 카카오 관련 색
+        kakao: "#FAE100",
+      },
+      maxWidth: {
+        "iphone-14-pro-max": "430px",
       },
     },
   },
