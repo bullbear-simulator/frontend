@@ -8,7 +8,7 @@ export default {
         body: ["Lato", "sans-serif"], // 일반 text
         number: ["Roboto Mono", "monospace"], // 가격 등 숫자
       },
-      color: {
+      colors: {
         primary_txt: {
           // 기본 글자색
           default: "#1E293B",

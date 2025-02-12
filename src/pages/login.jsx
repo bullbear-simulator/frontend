@@ -16,7 +16,15 @@ function Login() {
         <title>로그인</title>
         <meta name="description" content="카카오 로그인 페이지" />
       </Helmet>
-      <button onClick={loginHandler}>카카오</button>
+      <div className="flex flex-col justify-end h-screen">
+        <div className="flex-grow" />
+        <button
+          onClick={loginHandler}
+          className="bg-yellow-300 font-body text-primary_txt-default px-20 py-2 mx-auto mb-[30%]"
+        >
+          카카오톡 계정으로 로그인
+        </button>
+      </div>
     </>
   );
 }
