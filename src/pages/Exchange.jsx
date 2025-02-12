@@ -1,6 +1,11 @@
 function Exchange() {
   return (
-    <h1>Exchange</h1>
+    <div>
+      <h1>Exchange</h1>
+      <h1>Exchange</h1>
+      <h1>Exchange</h1>
+      <h1>Exchange</h1>
+    </div>
   );
 }
 
