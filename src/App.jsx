@@ -3,11 +3,12 @@ import "typeface-poppins";
 import "typeface-lato";
 import "typeface-roboto-mono";
 
+import { Router } from 'react-router-dom';
+import router from '@/router'; // 위에서 정의한 router 가져오기
+
 function App() {
   return (
-    <>
-      <h1 className="text-red-500 text-[200px]">왜? 안되니</h1>
-    </>
+    <Router router={router} />
   );
 }
 
