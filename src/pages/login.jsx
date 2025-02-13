@@ -1,5 +1,6 @@
 import Helmet from "react-helmet";
 import { useEffect } from "react";
+import kakaoLogo from "../assets/icons/kakao.svg";
 
 function Login() {
   const KAKAO_REST_API_KEY = "08f6fb6d41c553e165e98c0201582fdd";
@@ -20,9 +21,14 @@ function Login() {
         <div className="flex-grow" />
         <button
           onClick={loginHandler}
-          className="bg-yellow-300 font-body text-primary_txt-default px-20 py-2 mx-auto mb-[30%]"
+          className="bg-yellow-300 font-body text-primary_txt-default px-12 mx-auto mb-[30%] flex items-center justify-center"
         >
-          카카오톡 계정으로 로그인
+          <img
+            src={kakaoLogo}
+            alt="Kakao Logo"
+            className="h-[50px] w-[50px] mr-[20px]"
+          />
+          <span className="ml-[12px]">카카오톡 계정으로 로그인</span>
         </button>
       </div>
     </>
