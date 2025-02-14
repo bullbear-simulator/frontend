@@ -60,8 +60,9 @@ function Callback() {
         .then(data => {
           console.log("Access Token:", data.accessToken);
           localStorage.setItem("accessToken", data.accessToken);
-          navigate("/home");
-          fetchUserInfo(data.accessToken);
+          fetchUserInfo(data.accessToken).then(() => {
+            navigate("/home");
+          });
         })
         .catch(error => console.error("Error:", error));
     }
