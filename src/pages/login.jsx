@@ -1,6 +1,7 @@
 import Helmet from "react-helmet";
 import { useEffect } from "react";
 import kakaoLogo from "../assets/icons/kakao.svg";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const KAKAO_REST_API_KEY = "08f6fb6d41c553e165e98c0201582fdd";
@@ -36,6 +37,8 @@ function Login() {
 }
 
 function Callback() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
@@ -57,6 +60,7 @@ function Callback() {
         .then(data => {
           console.log("Access Token:", data.accessToken);
           localStorage.setItem("accessToken", data.accessToken);
+          navigate("/home");
           fetchUserInfo(data.accessToken);
         })
         .catch(error => console.error("Error:", error));
