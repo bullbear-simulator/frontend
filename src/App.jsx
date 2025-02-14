@@ -11,7 +11,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/auth/kakao" element={<Callback />} />
           <Route path="/home" element={<Home />} />
         </Routes>
