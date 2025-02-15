@@ -1,6 +1,6 @@
 function Exchange() {
   return (
-    <main className="max-w-iphone-14-pro-max text-primary_txt-default">
+    <main className="text-primary_txt-default">
       <div className="flex gap-10 justify-center bg-secondary_bg-default">
         <p>종목명</p>
         <p>현재가</p>
