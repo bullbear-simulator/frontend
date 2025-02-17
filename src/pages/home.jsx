@@ -22,6 +22,7 @@ function Home() {
       <button className="bg-secondary_bg-default text-primary_txt-default px-12 py-4">
         시작하기
       </button>
+      <p>뭐지</p>
     </div>
   );
 }
