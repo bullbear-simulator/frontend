@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "@pages/Home";
 import Layout from "@components/layout";
 import Exchange from "@pages/Exchange";
-
+import { Login, Callback } from "@pages/Login";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -11,6 +11,9 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "exchange", element: <Exchange /> },
+      { path: "login", element: <Login /> },
+      { path: "auth/kakao", element: <Callback /> },
+      { path: "home", element: <Home /> },
     ],
   },
 ]);
