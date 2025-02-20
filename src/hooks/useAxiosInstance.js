@@ -1,15 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
-export default function useAxiosInstance() {
-  const instance = axios.create({
-    baseURL: "https://11.fesp.shop",
-    timeout: 1000 * 15,
-    headers: {
-      "client-id": "final06",
-      "Content-Type": "application/json",
-      accept: "application/json",
-    },
-  });
-  
-  return instance;
-}
+// axios 인스턴스 생성
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:8080', // 기본 URL 설정
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export default axiosInstance;
