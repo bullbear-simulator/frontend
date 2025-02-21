@@ -6,7 +6,7 @@ function Home() {
     // 데이터 가져오기
     const fetchData = async () => {
       try {
-        const response = await useAxiosInstance.get('/stocks'); // 실제 엔드포인트로 변경
+        const response = await useAxiosInstance.get('/stocks');
         console.log('데이터:', response.data);
       } catch (error) {
         console.error('데이터 가져오기 오류:', error);
