@@ -12,6 +12,7 @@ function Home() {
         console.error('데이터 가져오기 오류:', error);
       }
     };
+    console.log("123");
 
     fetchData();
   }, []); // 빈 배열을 주면 컴포넌트가 처음 마운트될 때만 실행됨
