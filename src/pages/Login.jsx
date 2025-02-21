@@ -7,11 +7,7 @@ function Login() {
   const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
   const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
 
-  console.log("카카오 REST API 키:", KAKAO_REST_API_KEY);
-  console.log("Redirect URI:", REDIRECT_URI);
-
   const loginHandler = () => {
-    console.log("btn click");
     const url = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
     window.location.href = url;
   };
@@ -45,40 +41,42 @@ function Callback() {
   const [message, setMessage] = useState("로그인 중...");
 
   useEffect(() => {
-    console.log("Callback component rendered");
-
     const code = new URLSearchParams(window.location.search).get("code");
     console.log("인가 코드:", code);
 
     if (code) {
+      console.log("로그인 요청 시작");
+      const requestBody = JSON.stringify({ authorizationCode: code });
+      console.log(requestBody);
       fetch("http://localhost:8080/auth/kakao", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ authorizationCode: code }),
+        body: requestBody,
+        credentials: "include",
       })
         .then(response => {
+          console.log("response status:", response.status);
           if (!response.ok) {
             throw new Error("Token request failed: " + response.statusText);
           }
-          return response.json();
-        })
-        .then(data => {
-          console.log("Access Token:", data.accessToken);
-          localStorage.setItem("accessToken", data.accessToken);
-          return fetchUserInfo(data.accessToken);
-        })
-        .then(userData => {
-          if (userData) {
-            localStorage.setItem("userInfo", JSON.stringify(userData));
-            console.log("로그인 성공! 유저 정보 저장 완료");
-          }
-          setMessage("로그인 성공!");
+          console.log("로그인 성공, 쿠키가 설정되었습니다.");
+          setMessage("로그인 성공!!");
 
+          // 쿠키 확인
           setTimeout(() => {
-            navigate("/home");
-          }, 1500);
+            const token = getCookie("Authorization");
+            console.log("Authorization 쿠키:", token);
+
+            if (token) {
+              console.log("홈으로 이동 중");
+              navigate("/home");
+            } else {
+              alert("로그인 실패: 쿠키가 없어영");
+              navigate("/login");
+            }
+          }, 1000);
         })
         .catch(error => {
           console.error("Error during token fetch:", error);
@@ -92,28 +90,14 @@ function Callback() {
     }
   }, [navigate]);
 
-  const fetchUserInfo = accessToken => {
-    return fetch("https://kapi.kakao.com/v2/user/me", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("User info request failed: " + response.statusText);
-        }
-        return response.json();
-      })
-      .then(userData => {
-        console.log("User Data:", userData);
-        return userData;
-      })
-      .catch(error => {
-        console.error("Error fetching user info:", error);
-        return null;
-      });
-  };
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop().split(";")[0];
+    }
+    return null;
+  }
 
   return (
     <div className="flex items-center justify-center h-screen">
