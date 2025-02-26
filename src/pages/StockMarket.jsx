@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react';
 import useAxiosInstance from "../hooks/useAxiosInstance";
 
+
 function StockMarket() {
   const axios = useAxiosInstance();
   const [data, setData] = useState(null);
-  const response = axios.get("/stocks/005930");
-  
-  console.log(response);
+
+  const fetchData = async () => {
+    try {
+        const response = await axios.get('/stocks/000001');
+        console.log("123", response.data);
+    } catch (error) {
+        console.error(error);
+    }
+  };
+useEffect(() => {
+  fetchData();
+});
 
   return (
     <main>
