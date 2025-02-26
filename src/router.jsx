@@ -4,6 +4,8 @@ import Home from "@pages/Home";
 import Layout from "@components/layout";
 import Exchange from "@pages/Exchange";
 import { Login, Callback } from "@pages/Login";
+import StockDetail from "@pages/StockDetail";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +16,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "auth/kakao", element: <Callback /> },
       { path: "home", element: <Home /> },
+      { path: "stockdetail", element: <StockDetail /> },
     ],
   },
 ]);
